@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dịch vụ đặt sân (Admin)</title>
+  <link rel="stylesheet" href="../CSS/style.css" />
+  <link rel="stylesheet" href="../CSS/admin.css" />
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div class="brand">PickleBall Admin</div>
+      <nav>
+        <a href="admin-schedule.html">Quản lý lịch</a>
+        <a href="admin-revenue.html">Thống kê doanh thu</a>
+        <a href="admin-customers.html">Quản lý khách hàng</a>
+        <a href="admin-services.html" class="active">Dịch vụ sân</a>
+        <a href="../index.html">Về trang chủ</a>
+      </nav>
+    </aside>
+    <main class="admin-main">
+      <header class="admin-header">
+        <div>
+          <p class="page-tag">12. Dịch vụ đặt sân (Admin)</p>
+          <h1>Quản lý dịch vụ đặt sân</h1>
+        </div>
+      </header>
+      <section class="schedule-board">
+        <div class="schedule-top">
+          <div>
+            <label>Tìm dịch vụ</label>
+            <input id="serviceSearch" type="text" placeholder="Tìm tên dịch vụ" />
+          </div>
+        </div>
+        <div class="schedule-grid">
+          <div class="grid-header">Tên dịch vụ</div>
+          <div class="grid-header">Mô tả</div>
+          <div class="grid-header">Giá</div>
+          <div class="grid-header">Hành động</div>
+        </div>
+        <div id="serviceList" class="service-list"></div>
+        <div class="service-form">
+          <h3>Thêm dịch vụ mới</h3>
+          <form id="serviceForm">
+            <label>Tên dịch vụ<input id="serviceName" type="text" required /></label>
+            <label>Mô tả<input id="serviceDescription" type="text" required /></label>
+            <label>Giá (đ)<input id="servicePrice" type="number" min="1000" required /></label>
+            <button class="button button--primary" type="submit">Thêm dịch vụ</button>
+            <p id="serviceMessage" class="form-message"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="../JS/admin.js"></script>
+</body>
+</html>

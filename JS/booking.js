@@ -150,7 +150,8 @@ function initPaymentPage(){
     const method = document.querySelector('input[name="paymentMethod"]:checked')?.value;
     if (!method) return;
     const history = JSON.parse(localStorage.getItem('bookingHistory') || '[]');
-    history.push({...draft,method,id:Date.now()});
+    const user = JSON.parse(localStorage.getItem('pickleballUser') || 'null');
+    history.push({...draft, method, id: Date.now(), user });
     localStorage.setItem('bookingHistory', JSON.stringify(history));
     document.getElementById('paymentMessage').textContent = 'Thanh toán thành công!';
     document.getElementById('paymentSuccess').classList.remove('hidden');

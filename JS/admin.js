@@ -78,8 +78,23 @@ function renderRevenue(){
   }).join('');
 }
 function renderCustomers(){
-  const users = getUsers().filter(user => user.role !== 'admin');
+  const allUsers = getUsers().filter(user => user.role !== 'admin');
+  const searchInput = document.getElementById('customerSearch');
+  const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+  const users = query ? allUsers.filter(user => user.fullName.toLowerCase().includes(query) || user.email.toLowerCase().includes(query)) : allUsers;
   const container = document.getElementById('customerList');
+  const totalLabel = document.getElementById('customerTotal');
+  const newLabel = document.getElementById('customerNew');
+  const activeLabel = document.getElementById('customerActive');
+  if (totalLabel) totalLabel.textContent = String(allUsers.length);
+  if (newLabel) {
+    const recent = allUsers.filter(user => {
+      const registeredAt = new Date(user.registeredAt);
+      return Date.now() - registeredAt.getTime() <= 7 * 24 * 60 * 60 * 1000;
+    });
+    newLabel.textContent = String(recent.length);
+  }
+  if (activeLabel) activeLabel.textContent = String(users.length);
   if (!container) return;
   if (users.length === 0) {
     container.innerHTML = '<div class="admin-empty">Chưa có khách hàng đăng ký.</div>';
@@ -150,6 +165,10 @@ window.addEventListener('DOMContentLoaded', () => {
   highlightAdminNav();
   if (document.getElementById('scheduleList')) { renderSchedule(); }
   if (document.getElementById('totalRevenue')) { renderRevenue(); }
-  if (document.getElementById('customerList')) { renderCustomers(); }
+  if (document.getElementById('customerList')) {
+    renderCustomers();
+    const customerSearch = document.getElementById('customerSearch');
+    if (customerSearch) customerSearch.addEventListener('input', renderCustomers);
+  }
   if (document.getElementById('serviceList')) { initServicesPage(); }
 });

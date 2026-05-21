@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quản lý khách hàng (Admin)</title>
+  <link rel="stylesheet" href="../CSS/style.css" />
+  <link rel="stylesheet" href="../CSS/admin.css" />
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div class="brand">PickleBall Admin</div>
+      <nav>
+        <a href="admin-schedule.html">Quản lý lịch</a>
+        <a href="admin-revenue.html">Thống kê doanh thu</a>
+        <a href="admin-customers.html" class="active">Quản lý khách hàng</a>
+        <a href="admin-services.html">Dịch vụ sân</a>
+        <a href="../index.html">Về trang chủ</a>
+      </nav>
+    </aside>
+    <main class="admin-main">
+      <header class="admin-header">
+        <div>
+          <p class="page-tag">11. Quản lý khách hàng (Admin)</p>
+          <h1>Danh sách khách hàng</h1>
+        </div>
+      </header>
+      <section class="revenue-board">
+        <div class="revenue-summary">
+          <div class="summary-card"><span>Tổng khách hàng</span><strong id="customerTotal">0</strong></div>
+          <div class="summary-card"><span>Khách mới</span><strong id="customerNew">0</strong></div>
+          <div class="summary-card"><span>Khách hoạt động</span><strong id="customerActive">0</strong></div>
+        </div>
+        <div class="charts">
+          <div class="chart-card">
+            <h3>Tìm kiếm khách hàng</h3>
+            <input id="customerSearch" type="text" placeholder="Tìm theo tên hoặc email" />
+          </div>
+          <div class="chart-card">
+            <h3>Thông tin nhanh</h3>
+            <p>Danh sách khách hàng được cập nhật theo dữ liệu đăng ký.</p>
+          </div>
+        </div>
+        <div id="customerList" class="schedule-list"></div>
+      </section>
+    </main>
+  </div>
+  <script src="../JS/admin.js"></script>
+</body>
+</html>

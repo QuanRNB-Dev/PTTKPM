@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thống kê doanh thu (Admin)</title>
+  <link rel="stylesheet" href="../CSS/style.css" />
+  <link rel="stylesheet" href="../CSS/admin.css" />
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div class="brand">PickleBall Admin</div>
+      <nav>
+        <a href="admin-schedule.html">Quản lý lịch</a>
+        <a href="admin-revenue.html" class="active">Thống kê doanh thu</a>
+        <a href="../index.html">Về trang chủ</a>
+      </nav>
+    </aside>
+    <main class="admin-main">
+      <header class="admin-header">
+        <div>
+          <p class="page-tag">10. Thống kê doanh thu (Admin)</p>
+          <h1>Báo cáo kết quả kinh doanh</h1>
+        </div>
+      </header>
+      <section class="revenue-board">
+        <div class="revenue-summary">
+          <div class="summary-card"><span>Doanh thu</span><strong>12.450.000đ</strong></div>
+          <div class="summary-card"><span>Đơn thành công</span><strong>156</strong></div>
+          <div class="summary-card"><span>Doanh thu trung bình</span><strong>79.800đ</strong></div>
+        </div>
+        <div class="charts">
+          <div class="chart-card">
+            <h3>Doanh thu theo ngày</h3>
+            <div class="bar-chart">
+              <div class="bar" style="height: 45%;"><span>20/05</span></div>
+              <div class="bar" style="height: 60%;"><span>21/05</span></div>
+              <div class="bar" style="height: 80%;"><span>22/05</span></div>
+              <div class="bar" style="height: 70%;"><span>23/05</span></div>
+              <div class="bar" style="height: 55%;"><span>24/05</span></div>
+            </div>
+          </div>
+          <div class="chart-card">
+            <h3>Phân bố sân</h3>
+            <div class="pie-list">
+              <div><span class="dot dot--blue"></span>Sân PickleBall Cầu Giấy</div>
+              <div><span class="dot dot--green"></span>Sân PickleBall Long Biên</div>
+              <div><span class="dot dot--orange"></span>Sân PickleBall Hoàng Mai</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="../JS/admin.js"></script>
+</body>
+</html>

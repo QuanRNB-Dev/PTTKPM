@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đặt sân</title>
+  <link rel="stylesheet" href="../CSS/style.css" />
+  <link rel="stylesheet" href="../CSS/booking.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <aside class="sidebar">
+      <div class="brand">PickleBall Booking</div>
+      <nav>
+        <a href="courts.html">Danh sách sân</a>
+        <a href="booking-history.html">Lịch đã đặt</a>
+        <a href="profile.html">Hồ sơ</a>
+        <a href="../index.html">Trang chủ</a>
+      </nav>
+    </aside>
+    <main class="page-content">
+      <header class="page-header">
+        <div>
+          <p class="page-tag">4. Đặt sân</p>
+          <h1>Chọn khung giờ và xác nhận</h1>
+        </div>
+      </header>
+      <section class="booking-panel">
+        <div class="booking-left">
+          <div class="booking-card" id="selectedCourt"></div>
+          <div class="slot-selector">
+            <div class="selector-row">
+              <label>Chọn ngày</label>
+              <select id="dateSelect"></select>
+            </div>
+            <div class="selector-row">
+              <label>Chọn khung giờ</label>
+              <div id="slotGrid" class="slot-grid"></div>
+            </div>
+          </div>
+        </div>
+        <div class="booking-summary">
+          <div class="summary-box">
+            <h2>Thông tin đặt sân</h2>
+            <div class="summary-row"><span>Sân</span><span id="summaryCourt">Chưa chọn</span></div>
+            <div class="summary-row"><span>Ngày</span><span id="summaryDate">-</span></div>
+            <div class="summary-row"><span>Giờ</span><span id="summaryTime">-</span></div>
+            <div class="summary-row"><span>Giá</span><span id="summaryPrice">0đ</span></div>
+            <button id="continueBooking" class="button button--primary" disabled>Tiếp tục</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="../JS/booking.js"></script>
+</body>
+</html>

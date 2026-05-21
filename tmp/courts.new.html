@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Danh sách sân</title>
+  <link rel="stylesheet" href="../CSS/style.css" />
+  <link rel="stylesheet" href="../CSS/booking.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <aside class="sidebar">
+      <div class="brand">PickleBall Booking</div>
+      <nav>
+        <a href="courts.html" class="active">Danh sách sân</a>
+        <a href="booking-history.html">Lịch đã đặt</a>
+        <a href="profile.html">Hồ sơ</a>
+        <a href="../index.html">Trang chủ</a>
+      </nav>
+    </aside>
+    <main class="page-content">
+      <header class="page-header">
+        <div>
+          <p class="page-tag">3. Xem danh sách sân</p>
+          <h1>Danh sách sân Pickleball</h1>
+        </div>
+        <a class="button button--primary" href="booking.html">Đặt sân</a>
+      </header>
+      <section class="filter-row">
+        <input id="searchInput" type="text" placeholder="Tìm sân hoặc địa điểm" />
+        <div class="tag-list">
+          <button class="filter-chip active" data-filter="all">Tất cả</button>
+          <button class="filter-chip" data-filter="nearby">Gần bạn</button>
+          <button class="filter-chip" data-filter="popular">Phổ biến</button>
+        </div>
+      </section>
+      <section id="courtList" class="court-list"></section>
+    </main>
+  </div>
+  <script src="../JS/booking.js"></script>
+</body>
+</html>

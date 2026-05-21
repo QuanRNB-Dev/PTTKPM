@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quản lý lịch sân (Admin)</title>
+  <link rel="stylesheet" href="../CSS/style.css" />
+  <link rel="stylesheet" href="../CSS/admin.css" />
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div class="brand">PickleBall Admin</div>
+      <nav>
+        <a href="admin-schedule.html" class="active">Quản lý lịch</a>
+        <a href="admin-revenue.html">Thống kê doanh thu</a>
+        <a href="../index.html">Về trang chủ</a>
+      </nav>
+    </aside>
+    <main class="admin-main">
+      <header class="admin-header">
+        <div>
+          <p class="page-tag">9. Quản lý lịch sân (Admin)</p>
+          <h1>Quản lý lịch đặt sân</h1>
+        </div>
+      </header>
+      <section class="schedule-board">
+        <div class="schedule-top">
+          <div>
+            <label>Chọn tuần</label>
+            <select><option>20/05 - 26/05/2026</option><option>27/05 - 02/06/2026</option></select>
+          </div>
+          <div class="metric-card">
+            <span>Tổng lượt</span>
+            <strong>156</strong>
+          </div>
+        </div>
+        <div class="schedule-grid">
+          <div class="grid-header">Giờ</div>
+          <div class="grid-header">Sân 1</div>
+          <div class="grid-header">Sân 2</div>
+          <div class="grid-header">Sân 3</div>
+          <div class="grid-header">Sân 4</div>
+          <div class="grid-time">08:00</div><div class="grid-cell occupied">PickleBall Cầu Giấy</div><div class="grid-cell"></div><div class="grid-cell reserved">Long Biên</div><div class="grid-cell"></div>
+          <div class="grid-time">09:00</div><div class="grid-cell"></div><div class="grid-cell reserved">Hoàng Mai</div><div class="grid-cell"></div><div class="grid-cell occupied">Cầu Giấy</div>
+          <div class="grid-time">10:00</div><div class="grid-cell occupied">PickleBall Cầu Giấy</div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell reserved">Long Biên</div>
+          <div class="grid-time">11:00</div><div class="grid-cell"></div><div class="grid-cell occupied">Hoàng Mai</div><div class="grid-cell"></div><div class="grid-cell"></div>
+          <div class="grid-time">12:00</div><div class="grid-cell reserved">Cầu Giấy</div><div class="grid-cell"></div><div class="grid-cell occupied">Long Biên</div><div class="grid-cell"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="../JS/admin.js"></script>
+</body>
+</html>

@@ -45,6 +45,62 @@ body {
   align-items: center;
   justify-content: space-between;
 }
+.admin-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.admin-profile {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  background: transparent;
+  padding: 6px 10px;
+  border-radius: 12px;
+}
+.profile-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+.profile-name {
+  font-weight: 700;
+  color: #0f172a;
+}
+.profile-caret { color: #64748b; }
+.profile-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  display: grid;
+  min-width: 180px;
+  padding: 8px;
+  z-index: 40;
+}
+.profile-menu a,
+.profile-menu button {
+  padding: 8px 12px;
+  text-align: left;
+  border: none;
+  background: transparent;
+  color: #0f172a;
+  border-radius: 8px;
+}
+.profile-menu a:hover,
+.profile-menu button:hover { background: #f8fafc; }
+.button--link { background: none; padding: 0; color: #0f172a; cursor: pointer; }
 .page-tag {
   font-size: 0.95rem;
   color: #3b82f6;
@@ -307,10 +363,25 @@ body {
   align-items: flex-end;
   justify-content: center;
 }
-.bar-chart .bar span {
+.bar-chart .bar .bar-amount {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 0.75rem;
   color: #fff;
   padding: 6px 8px;
+  background: rgba(0,0,0,0.18);
+  border-radius: 8px;
+}
+.bar-chart .bar .bar-label {
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.72rem;
+  color: #475569;
+  white-space: nowrap;
 }
 .pie-list {
   display: grid;

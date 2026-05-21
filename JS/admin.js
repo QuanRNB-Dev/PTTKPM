@@ -145,7 +145,7 @@ function renderSchedule(){
   }));
 }
 function renderRevenue(){
-  const bookings = getBookingHistory();
+  const bookings = getBookingHistory().filter(b => (b.status || 'pending') === 'confirmed');
   const totalRevenue = bookings.reduce((sum, item) => sum + (item.total || 0), 0);
   const count = bookings.length;
   const average = count ? Math.round(totalRevenue / count) : 0;
@@ -163,11 +163,38 @@ function renderRevenue(){
     grouped[day] = (grouped[day] || 0) + (item.total || 0);
   });
   const days = Object.keys(grouped).sort((a,b) => new Date(a) - new Date(b));
+  const maxVal = Math.max(...Object.values(grouped), 1);
   chart.innerHTML = days.map(day => {
     const amount = grouped[day];
-    const height = Math.min(100, Math.round((amount / Math.max(...Object.values(grouped), 1)) * 100));
-    return `<div class="bar" style="height:${height}%"><span>${day}</span><strong>${formatMoney(amount)}</strong></div>`;
+    const height = Math.min(100, Math.round((amount / maxVal) * 100));
+    return `<div class="bar" style="height:${height}%"><div class="bar-amount">${formatMoney(amount)}</div><span class="bar-label">${day}</span></div>`;
   }).join('');
+}
+
+function initAdminProfile(){
+  const profile = document.getElementById('adminProfile');
+  const menu = document.getElementById('adminProfileMenu');
+  const avatar = profile?.querySelector('.profile-avatar');
+  const nameEl = profile?.querySelector('.profile-name');
+  const user = JSON.parse(localStorage.getItem('pickleballUser') || 'null');
+  if (user) {
+    if (avatar) avatar.textContent = (user.fullName || 'A').split(' ').pop().charAt(0).toUpperCase();
+    if (nameEl) nameEl.textContent = user.fullName || 'Admin';
+  }
+  if (!profile || !menu) return;
+  profile.addEventListener('click', (e) => {
+    e.stopPropagation();
+    menu.classList.toggle('hidden');
+  });
+  document.addEventListener('click', () => menu.classList.add('hidden'));
+  const logoutBtn = document.getElementById('logoutButton');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+      localStorage.removeItem('pickleballLoggedIn');
+      localStorage.removeItem('pickleballUser');
+      window.location.href = 'login.html';
+    });
+  }
 }
 function renderCustomers(){
   const allUsers = getUsers().filter(user => user.role !== 'admin');
@@ -287,6 +314,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
   if (document.getElementById('totalRevenue')) { renderRevenue(); }
+  initAdminProfile();
   if (document.getElementById('customerList')) {
     renderCustomers();
     const customerSearch = document.getElementById('customerSearch');

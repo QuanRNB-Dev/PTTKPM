@@ -1,156 +1,61 @@
-.filter-row{display:flex; flex-wrap:wrap; align-items:center; gap:16px; margin-bottom:24px;}
-.filter-row input{width:100%; max-width:320px; border:1px solid var(--border); border-radius:16px; padding:14px 16px;}
-.tag-list{display:flex; gap:10px; flex-wrap:wrap;}
-.filter-chip{border:1px solid var(--border); border-radius:999px; padding:10px 18px; background:#fff; color:#334155;}
-.filter-chip.active, .filter-chip:hover{background:#2563eb; color:#fff; border-color:#2563eb;}
-.court-list{display:grid; gap:20px;}
-.court-card{background:#fff; border-radius:24px; padding:24px; display:grid; grid-template-columns:1fr 2fr auto; gap:20px; align-items:center; box-shadow:var(--shadow);}
-.court-photo{height:140px; border-radius:20px; background:linear-gradient(135deg,#2563eb,#38bdf8);}
-.court-meta{display:grid; gap:10px;}
-.court-meta h3{font-size:1.2rem;}
+.page-shell{display:flex;min-height:100vh;}
+.sidebar{width:280px;background:#0f172a;color:#fff;display:flex;flex-direction:column;gap:24px;padding:32px;position:sticky;top:0;}
+.sidebar .brand{font-size:1.5rem;font-weight:800;letter-spacing:.01em;}
+.sidebar nav{display:grid;gap:12px;}
+.sidebar nav a{display:block;padding:14px 18px;border-radius:18px;color:#cbd5e1;transition:background .2s,color .2s;}
+.sidebar nav a.active,.sidebar nav a:hover{background:rgba(255,255,255,.08);color:#fff;}
+.page-content{flex:1;padding:32px;}
+.page-header{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:28px;}
+.page-header h1{font-size:2.4rem;line-height:1.05;}
+.page-tag{display:inline-flex;padding:10px 18px;border-radius:999px;background:#e0f2fe;color:#0c4a6e;font-weight:700;font-size:.95rem;}
+.filter-row{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-bottom:28px;}
+.filter-row input{width:100%;max-width:360px;border:1px solid var(--border);border-radius:18px;padding:16px 18px;}
+.tag-list{display:flex;gap:10px;flex-wrap:wrap;}
+.filter-chip{border:1px solid var(--border);border-radius:999px;padding:12px 20px;background:#fff;color:#334155;cursor:pointer;transition:background .2s,color .2s,border-color .2s;}
+.filter-chip.active,.filter-chip:hover{background:#2563eb;color:#fff;border-color:#2563eb;}
+.court-list{display:grid;gap:20px;}
+.court-card{background:#fff;border-radius:28px;padding:24px;display:grid;grid-template-columns:1fr 2fr auto;gap:24px;align-items:center;box-shadow:var(--shadow);}
+.court-photo{height:150px;border-radius:24px;background:linear-gradient(135deg,#2563eb,#38bdf8);}
+.court-meta{display:grid;gap:10px;}
+.court-meta h3{font-size:1.35rem;line-height:1.2;}
 .court-meta p{color:#64748b;}
-.court-price{font-weight:700; color:#0f172a;}
-.court-card button{height:44px;}
-.booking-panel{display:grid; grid-template-columns:1.7fr 1fr; gap:24px;}
-.booking-left, .booking-summary{background:#fff; border-radius:24px; padding:24px; box-shadow:var(--shadow);}
-.booking-card{border:1px solid var(--border); border-radius:20px; padding:22px; margin-bottom:20px;}
-.booking-card h2{margin-bottom:10px;}
-.slot-selector .selector-row{margin-bottom:20px;}
-.slot-selector label{display:block; margin-bottom:10px; color:#475569;}
-.slot-selector select{width:100%; border:1px solid var(--border); border-radius:16px; padding:14px;}
-.slot-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px;}
-.slot-item{border:1px solid var(--border); border-radius:16px; padding:14px; text-align:center; background:#f8fafc; cursor:pointer;}
-.slot-item.active{background:#2563eb; color:#fff; border-color:#2563eb;}
-.slot-item.disabled{opacity:.5; cursor:not-allowed;}
-.summary-box{display:grid; gap:16px;}
-.summary-box h2{font-size:1.3rem; margin-bottom:10px;}
-.summary-row{display:flex; justify-content:space-between; color:#475569;}
-.summary-box button{width:100%; margin-top:12px;}
-.payment-panel{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
-.payment-details, .payment-methods, .success-card{background:#fff; border-radius:24px; padding:24px; box-shadow:var(--shadow);}
-.payment-details h2, .payment-methods h2{margin-bottom:18px;}
-.payment-details .summary-row, .success-card .summary-row{display:flex; justify-content:space-between; margin-bottom:14px; color:#475569;}
-.method-item{display:flex; align-items:center; gap:12px; margin-bottom:12px; padding:14px 16px; border:1px solid var(--border); border-radius:16px; cursor:pointer;}
-.payment-methods button{width:100%; margin-top:18px;}
+.court-price{font-weight:800;color:#0f172a;}
+.court-card button{min-height:50px;}
+.booking-panel{display:grid;grid-template-columns:1.75fr 1fr;gap:24px;}
+.booking-left,.booking-summary{background:#fff;border-radius:28px;padding:28px;box-shadow:var(--shadow);}
+.booking-card{border:1px solid var(--border);border-radius:24px;padding:26px;margin-bottom:22px;}
+.booking-card h2{margin-bottom:16px;}
+.slot-selector .selector-row{margin-bottom:24px;}
+.slot-selector label{display:block;margin-bottom:10px;color:#475569;font-weight:600;}
+.slot-selector select{width:100%;border:1px solid var(--border);border-radius:18px;padding:16px;}
+.slot-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;}
+.slot-item{border:1px solid var(--border);border-radius:18px;padding:18px;text-align:center;background:#f8fafc;cursor:pointer;transition:transform .2s,background .2s,color .2s;}
+.slot-item:hover{transform:translateY(-1px);}
+.slot-item.active{background:#2563eb;color:#fff;border-color:#2563eb;}
+.slot-item.disabled{opacity:.5;cursor:not-allowed;}
+.summary-box{display:grid;gap:18px;}
+.summary-box h2{font-size:1.4rem;margin-bottom:10px;}
+.summary-row{display:flex;justify-content:space-between;color:#475569;}
+.summary-box button{width:100%;margin-top:14px;}
+.payment-panel{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.payment-details,.payment-methods,.success-card{background:#fff;border-radius:28px;padding:28px;box-shadow:var(--shadow);}
+.payment-details h2,.payment-methods h2{margin-bottom:20px;}
+.payment-details .summary-row,.success-card .summary-row{display:flex;justify-content:space-between;margin-bottom:16px;color:#475569;}
+.method-item{display:flex;align-items:center;gap:12px;margin-bottom:12px;padding:16px 18px;border:1px solid var(--border);border-radius:18px;cursor:pointer;}
+.method-item input{width:auto;margin:0;}
+.payment-methods button{width:100%;margin-top:22px;}
 .payment-methods .form-message{color:#16a34a;}
 .payment-success{margin-top:24px;}
 .success-card{text-align:center;}
-.success-icon{width:80px; height:80px; border-radius:50%; background:#22c55e; color:#fff; font-size:2.5rem; display:flex; align-items:center; justify-content:center; margin:0 auto 20px;}
-.button-group{display:flex; gap:16px; justify-content:center; margin-top:20px;}
-.history-list{display:grid; gap:20px;}
-.history-item{background:#fff; border-radius:24px; padding:24px; box-shadow:var(--shadow); display:grid; grid-template-columns:1fr auto; gap:20px; align-items:center;}
-.history-meta{display:grid; gap:10px;}
+.success-icon{width:90px;height:90px;border-radius:50%;background:#22c55e;color:#fff;font-size:2.5rem;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;}
+.button-group{display:flex;gap:16px;justify-content:center;margin-top:20px;flex-wrap:wrap;}
+.history-list{display:grid;gap:20px;}
+.history-item{background:#fff;border-radius:24px;padding:24px;box-shadow:var(--shadow);display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;}
+.history-meta{display:grid;gap:10px;}
 .history-meta span{color:#475569;}
-.history-actions{display:flex; gap:12px;}
-.cancel-panel{display:grid; gap:24px;}
-.cancel-card{background:#fff; border-radius:24px; padding:28px; box-shadow:var(--shadow);}
-.cancel-card h2{margin-bottom:16px;}
-.cancel-actions{display:flex; gap:16px; margin-top:16px;}
-.cancel-card div{display:flex; justify-content:space-between; margin-bottom:12px; color:#475569;}
-@media(max-width:960px){.page-shell{flex-direction:column;}.sidebar{width:100%;}.booking-panel,.payment-panel{grid-template-columns:1fr;}}'@;
-Set-Content -Path CSS/profile.css -Value @'
-body{background:#f8fafc; min-height:100vh; padding:32px;}
-.profile-shell{max-width:900px; margin:0 auto;}
-.profile-header{margin-bottom:24px;}
-.profile-card{display:flex; align-items:center; gap:24px; background:#fff; border-radius:28px; padding:28px; box-shadow:var(--shadow);}
-.profile-avatar{width:88px; height:88px; border-radius:50%; background:#2563eb; color:#fff; font-size:2.5rem; display:flex; align-items:center; justify-content:center;}
-.profile-info{background:#fff; border-radius:28px; padding:28px; box-shadow:var(--shadow); display:grid; gap:16px;}
-.info-row{display:flex; justify-content:space-between; padding:16px; border-radius:20px; background:#f8fafc;}
-.info-row span:first-child{color:#64748b;}
-.button.button--primary{width:fit-content;}
-@media(max-width:640px){.profile-card{flex-direction:column; text-align:center;}}'@;
-Set-Content -Path CSS/admin.css -Value @'
-body{background:#eff6ff; min-height:100vh; margin:0;}
-.admin-layout{display:flex; min-height:100vh;}
-.admin-sidebar{position:sticky; top:0; align-self:flex-start; width:280px; background:#0f172a; color:#f8fafc; padding:32px 24px;}
-.admin-sidebar .brand{font-size:1.2rem;font-weight:700; margin-bottom:24px;}
-.admin-sidebar nav a{display:block; color:#cbd5e1; padding:12px 0; margin-bottom:8px; border-left:3px solid transparent;}
-.admin-sidebar nav a.active{color:#fff; border-color:#22c55e;}
-.admin-sidebar nav a:hover{color:#fff;}
-.admin-main{flex:1; padding:32px;}
-.admin-header{margin-bottom:24px; display:flex; align-items:center; justify-content:space-between;}
-.page-tag{font-size:.95rem; color:#3b82f6; font-weight:600; margin-bottom:8px;}
-.schedule-board, .revenue-board{background:#fff; border-radius:32px; padding:32px; box-shadow:var(--shadow);}
-.schedule-top{display:flex; align-items:center; justify-content:space-between; gap:20px; margin-bottom:24px;}
-.schedule-top label{font-size:.95rem; color:#475569;}
-.schedule-top select{border:1px solid var(--border); border-radius:16px; padding:12px 14px;}
-.metric-card{background:#eef2ff; padding:18px 22px; border-radius:20px;}
-.metric-card span{display:block; color:#475569; margin-bottom:8px;}
-.metric-card strong{font-size:1.8rem;}
-.schedule-grid{display:grid; grid-template-columns:120px repeat(4,1fr); gap:1px; background:#e2e8f0;}
-.grid-header, .grid-time, .grid-cell{background:#fff; padding:18px;}
-.grid-header{font-weight:700; background:#e2e8f0;}
-.grid-time{background:#f8fafc;}
-.grid-cell{min-height:80px; display:flex; align-items:center; justify-content:center; border-radius:12px;}
-.grid-cell.occupied{background:#e0f2fe; color:#0c4a6e;}
-.grid-cell.reserved{background:#d1fae5; color:#166534;}
-.revenue-summary{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; margin-bottom:24px;}
-.summary-card{background:#f8fafc; border-radius:24px; padding:24px;}
-.summary-card span{display:block; color:#475569; margin-bottom:12px;}
-.summary-card strong{font-size:1.8rem;}
-.charts{display:grid; grid-template-columns:1fr 320px; gap:24px;}
-.chart-card{background:#fff; border-radius:24px; padding:24px; box-shadow:var(--shadow);}
-.bar-chart{display:flex; align-items:flex-end; gap:16px; height:220px; padding-top:12px;}
-.bar-chart .bar{position:relative; width:40px; background:#2563eb; border-radius:16px 16px 0 0; display:flex; align-items:flex-end; justify-content:center;}
-.bar-chart .bar span{font-size:.75rem; color:#fff; padding:6px 8px;}
-.pie-list{display:grid; gap:12px;}
-.dot{display:inline-block; width:12px; height:12px; border-radius:50%; margin-right:10px;}
-.dot--blue{background:#2563eb;}
-.dot--green{background:#22c55e;}
-.dot--orange{background:#f97316;}
-@media(max-width:900px){.admin-layout{flex-direction:column;}.charts{grid-template-columns:1fr;}.revenue-summary{grid-template-columns:1fr;}}'@;
-Set-Content -Path JS/main.js -Value @'
-function saveUser(user){localStorage.setItem('pickleballUser', JSON.stringify(user));}
-function getUser(){return JSON.parse(localStorage.getItem('pickleballUser')||'null');}
-function initAuthForms(){
-  const registerForm=document.getElementById('registerForm');
-  if(registerForm){
-    registerForm.addEventListener('submit', e=>{
-      e.preventDefault();
-      const fullName=document.getElementById('fullName').value.trim();
-      const email=document.getElementById('email').value.trim();
-      const phone=document.getElementById('phone').value.trim();
-      const password=document.getElementById('password').value;
-      if(fullName && email && phone && password.length>=6){
-        saveUser({fullName,email,phone});
-        alert('Ðang ký thành công! Vui lòng dang nh?p.');
-        window.location.href='login.html';
-      }
-    });
-  }
-  const loginForm=document.getElementById('loginForm');
-  if(loginForm){
-    loginForm.addEventListener('submit', e=>{
-      e.preventDefault();
-      const email=document.getElementById('loginEmail').value.trim();
-      const password=document.getElementById('loginPassword').value;
-      const user=getUser();
-      const message=document.getElementById('loginMessage');
-      if(user && user.email===email && password.length>=6){
-        localStorage.setItem('pickleballLoggedIn','true');
-        window.location.href='../HTML/courts.html';
-      } else {
-        message.textContent='Email ho?c m?t kh?u không dúng.';
-      }
-    });
-  }
-}
-function initProfile(){
-  const profileName=document.getElementById('profileName');
-  const profileEmail=document.getElementById('profileEmail');
-  const detailName=document.getElementById('detailName');
-  const detailEmail=document.getElementById('detailEmail');
-  const detailPhone=document.getElementById('detailPhone');
-  const user=getUser();
-  if(user && profileName){
-    profileName.textContent=user.fullName;
-    profileEmail.textContent=user.email;
-    detailName.textContent=user.fullName;
-    detailEmail.textContent=user.email;
-    detailPhone.textContent=user.phone;
-  }
-}
-window.addEventListener('DOMContentLoaded', ()=>{
-  initAuthForms();
-  initProfile();
-});
+.history-actions{display:flex;gap:12px;flex-wrap:wrap;}
+.cancel-panel{display:grid;gap:24px;}
+.cancel-card{background:#fff;border-radius:28px;padding:30px;box-shadow:var(--shadow);}
+.cancel-card h2{margin-bottom:18px;}
+.cancel-actions{display:flex;gap:16px;margin-top:18px;flex-wrap:wrap;}
+.cancel-card div{display:flex;justify-content:space-between;margin-bottom:14px;color:#475569;}

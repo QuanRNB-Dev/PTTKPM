@@ -248,6 +248,34 @@ body {
 @media (max-width: 900px) {
   .admin-layout {
     flex-direction: column;
+    min-height: auto;
+  }
+  .admin-sidebar {
+    position: relative;
+    top: auto;
+    width: 100%;
+    padding: 24px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .admin-sidebar nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .admin-sidebar nav a {
+    flex: 1 1 calc(50% - 10px);
+    margin-bottom: 0;
+    border-left: none;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.05);
+    padding: 12px 14px;
+  }
+  .admin-sidebar nav a.active,
+  .admin-sidebar nav a:hover {
+    background: rgba(37, 99, 235, 0.15);
+  }
+  .admin-main {
+    padding: 24px;
   }
   .revenue-summary {
     grid-template-columns: 1fr;

@@ -15,6 +15,41 @@ function formatBookingStatus(status){
   if (status === 'cancelled') return 'Đã huỷ';
   return 'Chờ xác nhận';
 }
+const adminCourts = ['Sân A1', 'Sân A2', 'Sân B1', 'Sân B2'];
+const adminDefaultSlots = ['06:00 - 07:00', '07:00 - 08:00', '08:00 - 09:00', '09:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 13:00', '13:00 - 14:00'];
+function getAdminSlots(){
+  const saved = JSON.parse(localStorage.getItem('adminTimeSlots') || 'null');
+  if (Array.isArray(saved) && saved.length) return Array.from(new Set([...adminDefaultSlots, ...saved]));
+  return adminDefaultSlots;
+}
+function addAdminSlot(slot){
+  const clean = slot.trim();
+  if (!clean) return;
+  const slots = Array.from(new Set([...getAdminSlots(), clean]));
+  localStorage.setItem('adminTimeSlots', JSON.stringify(slots));
+}
+function getSelectedDate(){
+  const stored = localStorage.getItem('adminSelectedScheduleDate');
+  if (stored) return new Date(stored);
+  return new Date();
+}
+function setSelectedDate(date){
+  localStorage.setItem('adminSelectedScheduleDate', date.toISOString());
+}
+function formatDateLabel(date){
+  const dayMap = ['CN', 'T2','T3','T4','T5','T6','T7'];
+  return `${dayMap[date.getDay()]} ${date.getDate()}/${date.getMonth()+1}`;
+}
+function getScheduleDays(){
+  const base = getSelectedDate();
+  const monday = new Date(base);
+  monday.setDate(base.getDate() - ((base.getDay() + 6) % 7));
+  return Array.from({length: 5}, (_,index) => {
+    const d = new Date(monday);
+    d.setDate(monday.getDate() + index + 1);
+    return d;
+  });
+}
 function getUsers(){
   return JSON.parse(localStorage.getItem('pickleballUsers') || '[]');
 }
@@ -223,7 +258,33 @@ window.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('scheduleList')) {
     renderSchedule();
     const scheduleFilter = document.getElementById('scheduleFilter');
+    const courtFilter = document.getElementById('courtFilter');
+    const addSlotButton = document.getElementById('addSlot');
+    const scheduleTabs = document.getElementById('scheduleTabs');
     if (scheduleFilter) scheduleFilter.addEventListener('change', renderSchedule);
+    if (courtFilter) courtFilter.addEventListener('change', renderSchedule);
+    if (addSlotButton) addSlotButton.addEventListener('click', () => {
+      const slot = window.prompt('Nhập khung giờ mới (vd: 14:00 - 15:00)');
+      if (slot && slot.trim()) {
+        addAdminSlot(slot.trim());
+        renderSchedule();
+      }
+    });
+    if (scheduleTabs) {
+      const days = getScheduleDays();
+      scheduleTabs.innerHTML = days.map(day => `
+        <button class="button button--tab" data-date="${day.toISOString().slice(0,10)}">${formatDateLabel(day)}</button>
+      `).join('');
+      scheduleTabs.querySelectorAll('button[data-date]').forEach(btn => {
+        if (btn.dataset.date === getSelectedDate().toISOString().slice(0,10)) btn.classList.add('active');
+        btn.addEventListener('click', () => {
+          setSelectedDate(new Date(btn.dataset.date));
+          scheduleTabs.querySelectorAll('button[data-date]').forEach(x => x.classList.remove('active'));
+          btn.classList.add('active');
+          renderSchedule();
+        });
+      });
+    }
   }
   if (document.getElementById('totalRevenue')) { renderRevenue(); }
   if (document.getElementById('customerList')) {

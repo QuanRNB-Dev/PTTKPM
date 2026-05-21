@@ -27,17 +27,33 @@
         </div>
       </header>
       <section class="schedule-board">
-        <div class="schedule-top">
-          <div>
-            <label>Chọn tuần</label>
-            <select id="scheduleFilter"><option value="all">Tất cả</option><option value="today">Hôm nay</option><option value="week">Tuần này</option></select>
-          </div>
-          <div class="metric-card">
-            <span>Đơn đặt</span>
-            <strong id="pendingCount">0</strong>
-          </div>
+        <div class="schedule-toolbar">
+          <div class="schedule-tabs" id="scheduleTabs"></div>
+          <button class="button button--primary" id="addSlot">+ Thêm khung giờ</button>
         </div>
-        <div id="scheduleList" class="schedule-list"></div>
+        <div class="schedule-grid-shell">
+          <aside class="schedule-sidebar">
+            <div class="sidebar-card">
+              <p class="sidebar-title">Lọc và chú thích</p>
+              <div class="field-group">
+                <label>Chọn ngày</label>
+                <select id="scheduleFilter"><option value="all">Tất cả</option><option value="today">Hôm nay</option><option value="week">Tuần này</option></select>
+              </div>
+              <div class="field-group">
+                <label>Chọn sân</label>
+                <select id="courtFilter"><option value="all">Tất cả sân</option><option value="Sân A1">Sân A1</option><option value="Sân A2">Sân A2</option><option value="Sân B1">Sân B1</option><option value="Sân B2">Sân B2</option></select>
+              </div>
+              <div class="legend-card">
+                <p class="legend-title">Chú thích</p>
+                <div class="legend-row"><span class="legend-dot legend-dot--green"></span><span>Đã xác nhận</span></div>
+                <div class="legend-row"><span class="legend-dot legend-dot--orange"></span><span>Chờ xác nhận</span></div>
+                <div class="legend-row"><span class="legend-dot legend-dot--red"></span><span>Đã huỷ</span></div>
+                <div class="legend-row"><span class="legend-dot legend-dot--gray"></span><span>Còn trống</span></div>
+              </div>
+            </div>
+          </aside>
+          <div id="scheduleList" class="schedule-grid"></div>
+        </div>
       </section>
     </main>
   </div>

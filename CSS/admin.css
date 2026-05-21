@@ -74,10 +74,184 @@ body {
   border-radius: 16px;
   padding: 12px 14px;
 }
-.metric-card {
+.schedule-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.schedule-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.button--tab {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: #f8fafc;
+  color: #334155;
+  cursor: pointer;
+}
+.button--tab.active,
+.button--tab:hover {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+.schedule-grid-shell {
+  display: grid;
+  grid-template-columns: 260px minmax(0,1fr);
+  gap: 24px;
+}
+.schedule-sidebar {
+  display: grid;
+  gap: 18px;
+}
+.sidebar-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  padding: 22px;
+}
+.sidebar-title {
+  margin: 0 0 16px;
+  font-weight: 700;
+  color: #0f172a;
+}
+.field-group {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.field-group label {
+  font-size: 0.95rem;
+  color: #475569;
+}
+.field-group select {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 12px 14px;
+  background: #fff;
+}
+.legend-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  padding: 18px;
+}
+.legend-title {
+  margin: 0 0 12px;
+  font-weight: 700;
+  color: #0f172a;
+}
+.legend-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  color: #475569;
+}
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.legend-dot--green { background: #22c55e; }
+.legend-dot--orange { background: #f97316; }
+.legend-dot--red { background: #ef4444; }
+.legend-dot--gray { background: #94a3b8; }
+.schedule-grid {
+  display: grid;
+  gap: 12px;
+}
+.schedule-grid-header {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.schedule-grid-title h2 {
+  margin: 0 0 8px;
+}
+.schedule-grid-title p {
+  margin: 0;
+  color: #64748b;
+}
+.schedule-grid-courts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.schedule-grid-court {
   background: #eef2ff;
-  padding: 18px 22px;
-  border-radius: 20px;
+  border-radius: 18px;
+  padding: 12px 14px;
+  font-weight: 700;
+  text-align: center;
+  color: #0f172a;
+}
+.schedule-grid-body {
+  display: grid;
+  gap: 12px;
+}
+.schedule-grid-row {
+  display: grid;
+  grid-template-columns: 120px repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.schedule-grid-time {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 16px;
+  font-weight: 700;
+  color: #0f172a;
+}
+.schedule-cell {
+  min-height: 108px;
+  border-radius: 18px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  background: #fff;
+  display: grid;
+  gap: 10px;
+}
+.schedule-cell--empty {
+  background: #eff6ff;
+  color: #0f172a;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.schedule-cell--confirmed {
+  background: #dcfce7;
+  border-color: #86efac;
+}
+.schedule-cell--pending {
+  background: #ffedd5;
+  border-color: #fecaca;
+}
+.schedule-cell--cancelled {
+  background: #fee2e2;
+  border-color: #fecaca;
+}
+.cell-title {
+  font-weight: 700;
+  color: #0f172a;
+}
+.cell-subtitle {
+  color: #475569;
+  font-size: 0.95rem;
+}
+.schedule-cell button {
+  width: 100%;
+  font-size: 0.9rem;
+  padding: 10px 12px;
+}
+.button--small {
+  padding: 8px 10px;
 }
 .metric-card span {
   display: block;
@@ -86,40 +260,6 @@ body {
 }
 .metric-card strong {
   font-size: 1.8rem;
-}
-.schedule-grid {
-  display: grid;
-  grid-template-columns: 120px repeat(4, 1fr);
-  gap: 1px;
-  background: #e2e8f0;
-}
-.grid-header,
-.grid-time,
-.grid-cell {
-  background: #fff;
-  padding: 18px;
-}
-.grid-header {
-  font-weight: 700;
-  background: #e2e8f0;
-}
-.grid-time {
-  background: #f8fafc;
-}
-.grid-cell {
-  min-height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 12px;
-}
-.grid-cell.occupied {
-  background: #e0f2fe;
-  color: #0c4a6e;
-}
-.grid-cell.reserved {
-  background: #d1fae5;
-  color: #166534;
 }
 .revenue-summary {
   display: grid;

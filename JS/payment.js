@@ -33,7 +33,7 @@ function initPaymentPage(){
     const method = document.querySelector('input[name="paymentMethod"]:checked');
     const paymentMethod = method ? method.value : 'VNPay';
     const history = JSON.parse(localStorage.getItem('bookingHistory') || '[]');
-    history.push({ ...draft, method: paymentMethod, id: Date.now() });
+    history.push({ ...draft, method: paymentMethod, status: 'pending', id: Date.now() });
     localStorage.setItem('bookingHistory', JSON.stringify(history));
     paymentMessage.textContent = 'Thanh toán thành công! Chuyển tới lịch sử...';
     successSection.classList.remove('hidden');

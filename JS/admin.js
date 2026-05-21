@@ -4,6 +4,17 @@ function formatMoney(value){
 function getBookingHistory(){
   return JSON.parse(localStorage.getItem('bookingHistory') || '[]');
 }
+function saveBookingHistory(bookings){
+  localStorage.setItem('bookingHistory', JSON.stringify(bookings));
+}
+function getBookingStatus(item){
+  return item.status || 'pending';
+}
+function formatBookingStatus(status){
+  if (status === 'confirmed') return 'Đã xác nhận';
+  if (status === 'cancelled') return 'Đã huỷ';
+  return 'Chờ xác nhận';
+}
 function getUsers(){
   return JSON.parse(localStorage.getItem('pickleballUsers') || '[]');
 }
@@ -24,31 +35,77 @@ function highlightAdminNav(){
     }
   });
 }
-function renderSchedule(){
+function filterScheduleBookings(bookings, period){
+  const now = new Date();
+  return bookings.filter(item => {
+    const date = new Date(item.date);
+    if (period === 'today') {
+      return date.toDateString() === now.toDateString();
+    }
+    if (period === 'week') {
+      const startOfWeek = new Date(now);
+      startOfWeek.setDate(now.getDate() - now.getDay());
+      const endOfWeek = new Date(startOfWeek);
+      endOfWeek.setDate(startOfWeek.getDate() + 6);
+      return date >= startOfWeek && date <= endOfWeek;
+    }
+    return true;
+  });
+}
+function updateBookingStatus(id, status){
   const bookings = getBookingHistory();
+  const updated = bookings.map(item => item.id === Number(id) || item.id === id ? {...item, status} : item);
+  saveBookingHistory(updated);
+  return updated;
+}
+function renderSchedule(){
+  const bookings = getBookingHistory().map(item => ({...item, status: getBookingStatus(item)}));
   const container = document.getElementById('scheduleList');
   const pendingCount = document.getElementById('pendingCount');
+  const filter = document.getElementById('scheduleFilter')?.value || 'all';
   if (!container) return;
-  if (bookings.length === 0) {
-    container.innerHTML = '<div class="admin-empty">Chưa có lịch đặt nào.</div>';
-    if (pendingCount) pendingCount.textContent = '0';
+  const visibleBookings = filterScheduleBookings(bookings, filter);
+  const pendingBookings = bookings.filter(item => item.status === 'pending');
+  if (visibleBookings.length === 0) {
+    container.innerHTML = '<div class="admin-empty">Không có lịch đặt phù hợp.</div>';
+    if (pendingCount) pendingCount.textContent = String(pendingBookings.length);
     return;
   }
-  if (pendingCount) pendingCount.textContent = String(bookings.length);
-  container.innerHTML = bookings.slice().reverse().map(item => `
-    <article class="schedule-card">
-      <div class="schedule-row"><strong>${item.court.name}</strong><span>${new Date(item.date).toLocaleDateString('vi-VN')}</span></div>
-      <div class="schedule-row"><span>Khung giờ</span><strong>${item.time}</strong></div>
-      <div class="schedule-row"><span>Khách hàng</span><strong>${item.user?.fullName || 'Khách ẩn danh'}</strong></div>
-      <div class="schedule-row"><span>Email</span><strong>${item.user?.email || '-'}</strong></div>
-      <div class="schedule-row"><span>Dịch vụ</span><strong>${item.service?.name || 'Không'}</strong></div>
-      <div class="schedule-row"><span>Tổng tiền</span><strong>${formatMoney(item.total)}</strong></div>
-      <div class="schedule-actions"><button class="button button--danger" data-cancel="${item.id}">Hủy lịch</button></div>
-    </article>`).join('');
-  container.querySelectorAll('button[data-cancel]').forEach(btn => btn.addEventListener('click', () => {
-    const bookings = getBookingHistory();
-    const updated = bookings.filter(b => String(b.id) !== btn.dataset.cancel);
-    localStorage.setItem('bookingHistory', JSON.stringify(updated));
+  if (pendingCount) pendingCount.textContent = String(pendingBookings.length);
+  const statusOrder = {pending: 0, confirmed: 1, cancelled: 2};
+  visibleBookings.sort((a,b) => statusOrder[a.status] - statusOrder[b.status] || new Date(a.date) - new Date(b.date));
+  container.innerHTML = visibleBookings.map(item => {
+    const isPending = item.status === 'pending';
+    const badge = `<span class="status-pill status-pill--${item.status}">${formatBookingStatus(item.status)}</span>`;
+    const actions = isPending ? `
+      <button class="button button--primary" data-confirm="${item.id}">Xác nhận</button>
+      <button class="button button--danger" data-reject="${item.id}">Xử lý từ chối</button>` :
+      `<button class="button button--secondary" disabled>${item.status === 'confirmed' ? 'Đã xác nhận' : 'Đã huỷ'}</button>`;
+    return `
+      <article class="schedule-card">
+        <div class="schedule-header">
+          <div>
+            <h3>${item.user?.fullName || 'Khách ẩn danh'}</h3>
+            <p class="schedule-meta">${item.user?.email || '-'} · ${item.user?.phone || '-'}</p>
+          </div>
+          <div class="schedule-tag">${badge}</div>
+        </div>
+        <div class="schedule-row"><span>Mã đặt</span><strong>${item.id}</strong></div>
+        <div class="schedule-row"><span>Sân</span><strong>${item.court.name}</strong></div>
+        <div class="schedule-row"><span>Ngày</span><strong>${new Date(item.date).toLocaleDateString('vi-VN')}</strong></div>
+        <div class="schedule-row"><span>Giờ</span><strong>${item.time}</strong></div>
+        <div class="schedule-row"><span>Dịch vụ</span><strong>${item.service?.name || 'Không'}</strong></div>
+        <div class="schedule-row"><span>Thanh toán</span><strong>${item.method || '-'}</strong></div>
+        <div class="schedule-row"><span>Tổng</span><strong>${formatMoney(item.total)}</strong></div>
+        <div class="schedule-actions">${actions}</div>
+      </article>`;
+  }).join('');
+  container.querySelectorAll('button[data-confirm]').forEach(btn => btn.addEventListener('click', () => {
+    updateBookingStatus(btn.dataset.confirm, 'confirmed');
+    renderSchedule();
+  }));
+  container.querySelectorAll('button[data-reject]').forEach(btn => btn.addEventListener('click', () => {
+    updateBookingStatus(btn.dataset.reject, 'cancelled');
     renderSchedule();
   }));
 }
@@ -163,7 +220,11 @@ function initServicesPage(){
 }
 window.addEventListener('DOMContentLoaded', () => {
   highlightAdminNav();
-  if (document.getElementById('scheduleList')) { renderSchedule(); }
+  if (document.getElementById('scheduleList')) {
+    renderSchedule();
+    const scheduleFilter = document.getElementById('scheduleFilter');
+    if (scheduleFilter) scheduleFilter.addEventListener('change', renderSchedule);
+  }
   if (document.getElementById('totalRevenue')) { renderRevenue(); }
   if (document.getElementById('customerList')) {
     renderCustomers();

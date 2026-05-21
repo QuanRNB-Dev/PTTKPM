@@ -8,26 +8,57 @@
   <link rel="stylesheet" href="../CSS/auth.css" />
 </head>
 <body>
+  <header class="auth-header">
+    <div class="container auth-header__inner">
+      <a class="logo auth-logo" href="../index.html">Pickleball 1982</a>
+      <a class="button button--secondary auth-header__action" href="login.html">Đăng nhập</a>
+    </div>
+  </header>
+
   <main class="auth-page">
-    <section class="auth-panel auth-panel--brand">
-      <div class="brand-logo">PickleBall</div>
-      <p>Đặt sân Pickleball dễ dàng, nhanh chóng và an toàn.</p>
-    </section>
-    <section class="auth-panel auth-panel--form">
-      <h1>Đăng ký tài khoản</h1>
-      <p>Nhập thông tin cá nhân để bắt đầu đặt sân.</p>
-      <form id="registerForm">
-        <label>Họ và tên<input type="text" id="fullName" placeholder="Nguyễn Văn A" required /></label>
-        <label>Email<input type="email" id="email" placeholder="example@gmail.com" required /></label>
-        <label>Số điện thoại<input type="tel" id="phone" placeholder="0123 456 789" required /></label>
-        <label>Mật khẩu<input type="password" id="password" placeholder="Tối thiểu 6 ký tự" minlength="6" required /></label>
-        <label class="checkbox-label"><input type="checkbox" id="agreeTerms" required /> Tôi đồng ý với <a href="#">Điều khoản</a> và <a href="#">Chính sách bảo mật</a>.</label>
-        <button class="button button--primary" type="submit">Đăng ký</button>
-        <p id="registerMessage" class="form-message"></p>
-      </form>
-      <p class="auth-help">Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
+    <section class="auth-card card">
+      <div class="auth-card__top">
+        <div class="auth-card__icon">P</div>
+        <h1>Tạo tài khoản mới</h1>
+        <p>Đăng ký để đặt sân dễ dàng và quản lý đơn hàng nhanh chóng.</p>
+      </div>
+
+      <div class="auth-card__body">
+        <form id="registerForm">
+          <div class="form-grid">
+            <label>
+              <span>Họ và tên *</span>
+              <input type="text" id="fullName" placeholder="Nguyễn Văn A" required />
+            </label>
+            <label>
+              <span>Số điện thoại *</span>
+              <input type="tel" id="phone" placeholder="0912 345 678" required />
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" id="email" placeholder="nguyenvana@gmail.com" required />
+            </label>
+            <label>
+              <span>Mật khẩu *</span>
+              <input type="password" id="password" placeholder="Tối thiểu 6 ký tự" minlength="6" required />
+            </label>
+            <label class="full-width">
+              <span>Xác nhận mật khẩu *</span>
+              <input type="password" id="confirmPassword" placeholder="Nhập lại mật khẩu" minlength="6" required />
+            </label>
+            <label class="checkbox-label full-width">
+              <input type="checkbox" id="agreeTerms" required />
+              <span>Tôi đồng ý với <a href="#">Điều khoản</a> và <a href="#">Chính sách bảo mật</a>.</span>
+            </label>
+            <button class="button button--primary full-width" type="submit">Đăng ký</button>
+          </div>
+          <p id="registerMessage" class="form-message"></p>
+        </form>
+        <p class="auth-help">Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
+      </div>
     </section>
   </main>
+
   <script src="../JS/main.js"></script>
 </body>
 </html>

@@ -335,7 +335,7 @@ function initCancelPage(){
       </div>
     </div>`;
   confirm.addEventListener('click', () => {
-    const updated = history.filter(b => String(b.id) !== cancelId);
+    const updated = history.filter(b => String(b.id) !== String(cancelId));
     localStorage.setItem('bookingHistory', JSON.stringify(updated));
     window.location.href = 'booking-history.html';
   });

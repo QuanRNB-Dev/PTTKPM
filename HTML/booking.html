@@ -8,56 +8,80 @@
   <link rel="stylesheet" href="../CSS/booking.css" />
 </head>
 <body>
-  <div class="page-shell">
-    <aside class="sidebar">
-      <div class="brand">PickleBall Booking</div>
-      <nav>
-        <a href="courts.html">Danh sách sân</a>
-        <a href="booking-history.html">Lịch đã đặt</a>
-        <a href="profile.html">Hồ sơ</a>
-        <a href="../index.html">Trang chủ</a>
-      </nav>
-    </aside>
-    <main class="page-content">
-      <header class="page-header">
-        <div>
-          <p class="page-tag">4. Đặt sân</p>
-          <h1>Chọn khung giờ và xác nhận</h1>
+  <header class="booking-topbar">
+    <div class="container topbar-inner">
+      <a class="topbar-back" href="courts.html">← Đặt sân</a>
+      <div class="topbar-brand">
+        <a class="logo topbar-logo" href="../index.html">Pickleball 1982</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="booking-page">
+    <div class="booking-shell">
+      <aside class="booking-sidebar">
+        <div class="steps-card">
+          <h2>Bước đặt sân</h2>
+          <ol class="steps-list">
+            <li class="step-item step-item--active"><span>1</span> Chọn sân</li>
+            <li class="step-item"><span>2</span> Chọn ngày giờ</li>
+            <li class="step-item"><span>3</span> Xác nhận</li>
+            <li class="step-item"><span>4</span> Thanh toán</li>
+          </ol>
         </div>
-      </header>
-      <section class="booking-panel">
-        <div class="booking-left">
-          <div class="booking-card" id="selectedCourt"></div>
-          <div class="slot-selector">
-            <div class="selector-row">
-              <label>Chọn ngày</label>
-              <select id="dateSelect"></select>
+        <div class="booking-summary-card">
+          <h3>Tóm tắt đặt sân</h3>
+          <div class="summary-line"><span>Sân</span><strong id="summaryCourt">Chưa chọn</strong></div>
+          <div class="summary-line"><span>Ngày</span><strong id="summaryDate">-</strong></div>
+          <div class="summary-line"><span>Giờ</span><strong id="summaryTime">-</strong></div>
+          <div class="summary-line"><span>Tổng</span><strong id="summaryTotal">0đ</strong></div>
+        </div>
+      </aside>
+
+      <section class="booking-main">
+        <div class="booking-card booking-card--wide">
+          <div class="booking-card__header">
+            <h1>Đặt sân</h1>
+            <p>Chọn sân, ngày và khung giờ phù hợp.</p>
+          </div>
+
+          <div class="selected-court-card" id="selectedCourt"></div>
+
+          <div class="form-grid">
+            <label>
+              <span>Chọn sân</span>
+              <select id="courtSelect"></select>
+            </label>
+            <label>
+              <span>Chọn ngày</span>
+              <input type="date" id="dateSelect" />
+            </label>
+          </div>
+
+          <div class="slot-section">
+            <div class="slot-section__header">
+              <p>Chọn khung giờ</p>
             </div>
-            <div class="selector-row">
-              <label>Chọn dịch vụ</label>
-              <select id="serviceSelect"></select>
-            </div>
-            <div class="selector-row">
-              <label>Chọn khung giờ</label>
-              <div id="slotGrid" class="slot-grid"></div>
+            <div id="slotGrid" class="slot-grid"></div>
+            <div class="slot-legend">
+              <div class="legend-item"><span class="legend-dot legend-dot--available"></span> Còn trống</div>
+              <div class="legend-item"><span class="legend-dot legend-dot--booked"></span> Đã đặt</div>
+              <div class="legend-item"><span class="legend-dot legend-dot--selected"></span> Đang chọn</div>
             </div>
           </div>
-        </div>
-        <div class="booking-summary">
-          <div class="summary-box">
-            <h2>Thông tin đặt sân</h2>
-            <div class="summary-row"><span>Sân</span><span id="summaryCourt">Chưa chọn</span></div>
-            <div class="summary-row"><span>Ngày</span><span id="summaryDate">-</span></div>
-            <div class="summary-row"><span>Giờ</span><span id="summaryTime">-</span></div>
-            <div class="summary-row"><span>Dịch vụ</span><span id="summaryService">-</span></div>
-            <div class="summary-row"><span>Giá sân</span><span id="summaryPrice">0đ</span></div>
-            <div class="summary-row"><span>Tổng</span><strong id="summaryTotal">0đ</strong></div>
-            <button id="continueBooking" class="button button--primary" disabled>Tiếp tục</button>
+
+          <div class="booking-action-panel">
+            <div class="booking-summary-inline">
+              <div id="selectedSummaryText">Sân: - · Ngày: - · Giờ: -</div>
+              <div class="booking-price">Tổng: <strong id="summaryTotalInline">0đ</strong></div>
+            </div>
+            <button id="continueBooking" class="button button--primary" disabled>Xác nhận đặt sân</button>
           </div>
         </div>
       </section>
-    </main>
-  </div>
+    </div>
+  </main>
+
   <script src="../JS/booking.js"></script>
 </body>
 </html>

@@ -8,35 +8,50 @@
   <link rel="stylesheet" href="../CSS/booking.css" />
 </head>
 <body>
-  <div class="page-shell">
-    <aside class="sidebar">
-      <div class="brand">PickleBall Booking</div>
-      <nav>
-        <a href="courts.html" class="active">Danh sách sân</a>
+  <header class="site-topbar">
+    <div class="container topbar-inner">
+      <a class="logo topbar-logo" href="../index.html">Pickleball 1982</a>
+      <nav class="topbar-nav">
+        <a href="../index.html">Trang chủ</a>
+        <a class="active" href="courts.html">Sân</a>
         <a href="booking-history.html">Lịch đã đặt</a>
         <a href="profile.html">Hồ sơ</a>
-        <a href="../index.html">Trang chủ</a>
       </nav>
-    </aside>
-    <main class="page-content">
-      <header class="page-header">
+    </div>
+  </header>
+
+  <main class="page-shell page-shell--courts">
+    <div class="page-content page-content--courts">
+      <section class="page-header page-header--courts">
         <div>
-          <p class="page-tag">3. Xem danh sách sân</p>
-          <h1>Danh sách sân Pickleball</h1>
+          <p class="page-tag">Danh sách sân</p>
+          <h1>Pickleball 1982</h1>
+          <p class="page-subtitle">Chọn sân phù hợp và xem tình trạng đặt trực quan.</p>
         </div>
-        <a class="button button--primary" href="booking.html">Đặt sân</a>
-      </header>
-      <section class="filter-row">
-        <input id="searchInput" type="text" placeholder="Tìm sân hoặc địa điểm" />
-        <div class="tag-list">
-          <button class="filter-chip active" data-filter="all">Tất cả</button>
-          <button class="filter-chip" data-filter="nearby">Gần bạn</button>
-          <button class="filter-chip" data-filter="popular">Phổ biến</button>
-        </div>
+        <a class="button button--primary" href="booking.html">Đặt sân ngay</a>
       </section>
+
+      <section class="search-panel">
+        <div class="search-group">
+          <input id="searchInput" type="text" placeholder="Tìm sân hoặc địa điểm" />
+          <button class="button button--secondary search-button" type="button">Tìm kiếm</button>
+        </div>
+        <label class="date-control">
+          <span>Ngày</span>
+          <input type="date" id="dateInput" />
+        </label>
+      </section>
+
+      <section class="filter-row status-tabs">
+        <button class="filter-chip active" data-filter="all">Tất cả</button>
+        <button class="filter-chip" data-filter="available">Còn trống</button>
+        <button class="filter-chip" data-filter="booked">Đã đặt</button>
+      </section>
+
       <section id="courtList" class="court-list"></section>
-    </main>
-  </div>
+    </div>
+  </main>
+
   <script src="../JS/booking.js"></script>
 </body>
 </html>

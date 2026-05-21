@@ -8,26 +8,31 @@
   <link rel="stylesheet" href="../CSS/booking.css" />
 </head>
 <body>
-  <div class="page-shell">
-    <aside class="sidebar">
-      <div class="brand">PickleBall Booking</div>
-      <nav>
-        <a href="courts.html">Danh sách sân</a>
-        <a href="booking-history.html" class="active">Lịch đã đặt</a>
-        <a href="profile.html">Hồ sơ</a>
-        <a href="../index.html">Trang chủ</a>
-      </nav>
-    </aside>
-    <main class="page-content">
-      <header class="page-header">
+  <header class="booking-topbar">
+    <div class="container topbar-inner">
+      <a class="topbar-back" href="courts.html">← Lịch đặt</a>
+      <a class="logo topbar-logo" href="../index.html">Pickleball 1982</a>
+    </div>
+  </header>
+
+  <main class="history-page">
+    <div class="history-shell">
+      <section class="history-header-card">
         <div>
-          <p class="page-tag">6. Lịch đã đặt</p>
-          <h1>Lịch đã đặt của bạn</h1>
+          <p class="page-tag">Lịch đặt của tôi</p>
+          <h1>Lịch đặt sân của bạn</h1>
         </div>
-      </header>
+        <div class="history-tabs" role="tablist">
+          <button class="history-tab active" data-filter="all">Tất cả</button>
+          <button class="history-tab" data-filter="upcoming">Sắp tới</button>
+          <button class="history-tab" data-filter="past">Đã qua</button>
+        </div>
+      </section>
+
       <section id="historyList" class="history-list"></section>
-    </main>
-  </div>
+    </div>
+  </main>
+
   <script src="../JS/booking.js"></script>
 </body>
 </html>

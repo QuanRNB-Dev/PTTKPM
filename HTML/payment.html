@@ -8,47 +8,81 @@
   <link rel="stylesheet" href="../CSS/booking.css" />
 </head>
 <body>
-  <div class="page-shell">
-    <aside class="sidebar">
-      <div class="brand">PickleBall Booking</div>
-      <nav>
-        <a href="courts.html">Danh sách sân</a>
-        <a href="booking-history.html">Lịch đã đặt</a>
-        <a href="profile.html">Hồ sơ</a>
-        <a href="../index.html">Trang chủ</a>
-      </nav>
-    </aside>
-    <main class="page-content">
-      <header class="page-header">
-        <div>
-          <p class="page-tag">5. Thanh toán online</p>
-          <h1>Thanh toán đặt sân</h1>
+  <header class="booking-topbar">
+    <div class="container topbar-inner">
+      <a class="topbar-back" href="booking.html">← Thanh toán</a>
+      <a class="logo topbar-logo" href="../index.html">Pickleball 1982</a>
+    </div>
+  </header>
+
+  <main class="payment-page">
+    <div class="payment-shell">
+      <section class="payment-card">
+        <div class="payment-summary-box">
+          <div class="payment-summary-header">
+            <span>Thông tin đặt sân</span>
+          </div>
+          <div class="payment-summary-body">
+            <div class="payment-summary-text">Sân <strong id="payCourt">-</strong></div>
+            <div class="payment-summary-text">Ngày <strong id="payDate">-</strong></div>
+            <div class="payment-summary-text">Giờ <strong id="payTime">-</strong></div>
+            <div class="payment-summary-text">Dịch vụ <strong id="payService">-</strong></div>
+            <div class="payment-summary-total">
+              <div>
+                <p>Thành tiền</p>
+                <strong id="payAmount">0đ</strong>
+              </div>
+            </div>
+          </div>
         </div>
-      </header>
-      <section class="payment-panel">
-        <div class="payment-details">
-          <h2>Thông tin đơn hàng</h2>
-          <div class="summary-row"><span>Sân</span><span id="payCourt">-</span></div>
-          <div class="summary-row"><span>Ngày</span><span id="payDate">-</span></div>
-          <div class="summary-row"><span>Giờ</span><span id="payTime">-</span></div>
-          <div class="summary-row"><span>Dịch vụ</span><span id="payService">-</span></div>
-          <div class="summary-row"><span>Phí dịch vụ</span><span id="payServiceFee">0đ</span></div>
-          <div class="summary-row"><span>Thành tiền</span><span id="payAmount">0đ</span></div>
-        </div>
-        <div class="payment-methods">
-          <h2>Chọn phương thức thanh toán</h2>
-          <label class="method-item"><input type="radio" name="paymentMethod" value="VNPay" checked /> VNPay</label>
-          <label class="method-item"><input type="radio" name="paymentMethod" value="MoMo" /> MoMo</label>
-          <label class="method-item"><input type="radio" name="paymentMethod" value="ZaloPay" /> ZaloPay</label>
-          <button id="payButton" class="button button--primary">Thanh toán <span id="payTotal">0đ</span></button>
+
+        <div class="payment-methods-box">
+          <h2>Phương thức thanh toán</h2>
+          <div class="payment-methods-list">
+            <label class="method-item">
+              <input type="radio" name="paymentMethod" value="Chuyển khoản" checked />
+              <div class="method-card">
+                <div class="method-icon">🏦</div>
+                <div>
+                  <strong>Chuyển khoản ngân hàng</strong>
+                  <p>Ngân hàng Techcombank</p>
+                </div>
+              </div>
+            </label>
+            <label class="method-item">
+              <input type="radio" name="paymentMethod" value="Ví điện tử" />
+              <div class="method-card">
+                <div class="method-icon">📱</div>
+                <div>
+                  <strong>Ví điện tử (Momo/ZaloPay)</strong>
+                  <p>Thanh toán nhanh chóng, bảo mật.</p>
+                </div>
+              </div>
+            </label>
+            <label class="method-item">
+              <input type="radio" name="paymentMethod" value="Tiền mặt" />
+              <div class="method-card">
+                <div class="method-icon">💵</div>
+                <div>
+                  <strong>Tiền mặt tại sân</strong>
+                  <p>Thanh toán khi đến sân.</p>
+                </div>
+              </div>
+            </label>
+          </div>
+
+          <div class="payment-actions">
+            <button id="payButton" class="button button--primary">Thanh toán ngay</button>
+            <p class="payment-note"><strong>Mã đơn:</strong> PBK-20260417-001</p>
+          </div>
           <p id="paymentMessage" class="form-message"></p>
         </div>
       </section>
       <section id="paymentSuccess" class="payment-success hidden">
         <div class="success-card">
           <div class="success-icon">✓</div>
-          <h2>Đặt sân thành công!</h2>
-          <p>Thông tin đặt sân đã được gửi đến email của bạn.</p>
+          <h2>Thanh toán thành công!</h2>
+          <p>Thông tin đặt sân đã được ghi nhận.</p>
           <div class="summary-row"><span>Sân</span><span id="successCourt">-</span></div>
           <div class="summary-row"><span>Ngày</span><span id="successDate">-</span></div>
           <div class="summary-row"><span>Giờ</span><span id="successTime">-</span></div>
@@ -60,8 +94,9 @@
           </div>
         </div>
       </section>
-    </main>
-  </div>
+    </div>
+  </main>
+
   <script src="../JS/payment.js"></script>
 </body>
 </html>

@@ -8,28 +8,44 @@
   <link rel="stylesheet" href="../CSS/auth.css" />
 </head>
 <body>
+  <header class="auth-header">
+    <div class="container auth-header__inner">
+      <a class="logo auth-logo" href="../index.html">Pickleball 1982</a>
+      <a class="button button--secondary auth-header__action" href="register.html">Tạo tài khoản mới</a>
+    </div>
+  </header>
+
   <main class="auth-page">
-    <section class="auth-panel auth-panel--brand">
-      <div class="brand-logo">PickleBall</div>
-      <p>Đăng nhập để tiếp tục đặt sân và quản lý lịch.</p>
-    </section>
-    <section class="auth-panel auth-panel--form">
-      <h1>Đăng nhập</h1>
-      <p>Tiếp tục với thông tin đăng ký của bạn.</p>
-      <form id="loginForm">
-        <label>Email<input type="email" id="loginEmail" placeholder="example@gmail.com" required /></label>
-        <label>Mật khẩu<input type="password" id="loginPassword" placeholder="Nhập mật khẩu" required /></label>
-        <button class="button button--primary" type="submit">Đăng nhập</button>
-        <p id="loginMessage" class="form-message"></p>
-      </form>
-      <div class="social-login">
-        <button class="button button--secondary">Google</button>
-        <button class="button button--secondary">Facebook</button>
+    <section class="auth-card card">
+      <div class="auth-card__top">
+        <div class="auth-card__icon">P</div>
+        <h1>Đăng nhập</h1>
+        <p>Đăng nhập để đặt sân và quản lý lịch của bạn.</p>
       </div>
-      <p class="auth-help">Đăng nhập admin: <strong>admin@pickleball.com</strong> / <strong>admin123</strong></p>
-      <p class="auth-help">Chưa có tài khoản? <a href="register.html">Đăng ký</a></p>
+
+      <div class="auth-card__body">
+        <form id="loginForm">
+          <div class="form-grid">
+            <label class="full-width">
+              <span>Số điện thoại / Email</span>
+              <input type="email" id="loginEmail" placeholder="0912 345 678" required />
+            </label>
+            <label class="full-width">
+              <span>Mật khẩu</span>
+              <input type="password" id="loginPassword" placeholder="Nhập mật khẩu" required />
+            </label>
+            <div class="form-actions full-width">
+              <button class="button button--primary full-width" type="submit">Đăng nhập</button>
+              <a class="forgot-link" href="#">Quên mật khẩu?</a>
+            </div>
+            <p id="loginMessage" class="form-message"></p>
+          </div>
+        </form>
+        <p class="auth-help">Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a></p>
+      </div>
     </section>
   </main>
+
   <script src="../JS/main.js"></script>
 </body>
 </html>

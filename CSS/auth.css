@@ -103,6 +103,19 @@ body {
 .button.full-width {
   width: 100%;
 }
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+}
+.forgot-link {
+  display: inline-flex;
+  justify-content: center;
+  color: var(--primary);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
 .auth-help {
   margin-top: 22px;
   text-align: center;
@@ -118,7 +131,8 @@ body {
   }
   .form-grid label.full-width,
   .form-grid button.full-width,
-  .form-grid .checkbox-label.full-width {
+  .form-grid .checkbox-label.full-width,
+  .form-grid .form-actions.full-width {
     grid-column: 1 / -1;
   }
 }

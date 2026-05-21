@@ -176,6 +176,26 @@ body {
   font-weight: 700;
   color: #0f172a;
 }
+.status-summary-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.status-summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  color: #0f172a;
+}
+.status-summary-row strong {
+  font-size: 1.8rem;
+}
+.status-summary-row span {
+  color: #475569;
+}
 .field-group {
   display: grid;
   gap: 10px;

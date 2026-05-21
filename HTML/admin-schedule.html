@@ -43,6 +43,13 @@
                 <label>Chọn sân</label>
                 <select id="courtFilter"><option value="all">Tất cả sân</option><option value="Sân A1">Sân A1</option><option value="Sân A2">Sân A2</option><option value="Sân B1">Sân B1</option><option value="Sân B2">Sân B2</option></select>
               </div>
+              <div class="field-group">
+                <label>Trạng thái đặt sân</label>
+                <select id="statusFilter"><option value="all">Tất cả</option><option value="pending">Chờ xác nhận</option><option value="confirmed">Đã xác nhận</option><option value="cancelled">Đã huỷ</option></select>
+              </div>
+              <div class="field-group status-summary-card">
+                <div class="status-summary-row"><strong id="pendingCount">0</strong><span>Yêu cầu chờ</span></div>
+              </div>
               <div class="legend-card">
                 <p class="legend-title">Chú thích</p>
                 <div class="legend-row"><span class="legend-dot legend-dot--green"></span><span>Đã xác nhận</span></div>

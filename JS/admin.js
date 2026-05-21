@@ -70,19 +70,22 @@ function highlightAdminNav(){
     }
   });
 }
-function filterScheduleBookings(bookings, period){
+function filterScheduleBookings(bookings, period, status){
   const now = new Date();
   return bookings.filter(item => {
     const date = new Date(item.date);
     if (period === 'today') {
-      return date.toDateString() === now.toDateString();
+      if (date.toDateString() !== now.toDateString()) return false;
     }
     if (period === 'week') {
       const startOfWeek = new Date(now);
       startOfWeek.setDate(now.getDate() - now.getDay());
       const endOfWeek = new Date(startOfWeek);
       endOfWeek.setDate(startOfWeek.getDate() + 6);
-      return date >= startOfWeek && date <= endOfWeek;
+      if (!(date >= startOfWeek && date <= endOfWeek)) return false;
+    }
+    if (status && status !== 'all' && item.status !== status) {
+      return false;
     }
     return true;
   });
@@ -98,8 +101,9 @@ function renderSchedule(){
   const container = document.getElementById('scheduleList');
   const pendingCount = document.getElementById('pendingCount');
   const filter = document.getElementById('scheduleFilter')?.value || 'all';
+  const statusFilter = document.getElementById('statusFilter')?.value || 'all';
   if (!container) return;
-  const visibleBookings = filterScheduleBookings(bookings, filter);
+  const visibleBookings = filterScheduleBookings(bookings, filter, statusFilter);
   const pendingBookings = bookings.filter(item => item.status === 'pending');
   if (visibleBookings.length === 0) {
     container.innerHTML = '<div class="admin-empty">Không có lịch đặt phù hợp.</div>';
@@ -113,8 +117,8 @@ function renderSchedule(){
     const isPending = item.status === 'pending';
     const badge = `<span class="status-pill status-pill--${item.status}">${formatBookingStatus(item.status)}</span>`;
     const actions = isPending ? `
-      <button class="button button--primary" data-confirm="${item.id}">Xác nhận</button>
-      <button class="button button--danger" data-reject="${item.id}">Xử lý từ chối</button>` :
+      <button class="button button--primary" data-confirm="${item.id}">Xác nhận đặt sân</button>
+      <button class="button button--danger" data-reject="${item.id}">Từ chối đặt sân</button>` :
       `<button class="button button--secondary" disabled>${item.status === 'confirmed' ? 'Đã xác nhận' : 'Đã huỷ'}</button>`;
     return `
       <article class="schedule-card">
@@ -288,8 +292,10 @@ window.addEventListener('DOMContentLoaded', () => {
     const courtFilter = document.getElementById('courtFilter');
     const addSlotButton = document.getElementById('addSlot');
     const scheduleTabs = document.getElementById('scheduleTabs');
+    const statusFilter = document.getElementById('statusFilter');
     if (scheduleFilter) scheduleFilter.addEventListener('change', renderSchedule);
     if (courtFilter) courtFilter.addEventListener('change', renderSchedule);
+    if (statusFilter) statusFilter.addEventListener('change', renderSchedule);
     if (addSlotButton) addSlotButton.addEventListener('click', () => {
       const slot = window.prompt('Nhập khung giờ mới (vd: 14:00 - 15:00)');
       if (slot && slot.trim()) {
